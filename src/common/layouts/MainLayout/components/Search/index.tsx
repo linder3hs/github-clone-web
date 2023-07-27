@@ -1,17 +1,17 @@
 "use client";
-
 import { useState, KeyboardEvent, ChangeEvent } from "react";
-import { search } from "@/services/github";
+import { useRouter } from "next/navigation";
 
 export default function Search() {
+  const router = useRouter();
+
   const [text, setText] = useState<string>("");
 
   const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
 
     if (e.key === "Enter" && value !== "") {
-      search("users", value);
-      setText("");
+      router.push(`/search?q=${value}&type=repositories`);
     }
   };
 

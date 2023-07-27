@@ -38,18 +38,23 @@ export default function TemplateUser({ username }: Props) {
 
   return (
     <>
-      <div className="flex p-12">
+      <div className="flex flex-col md:flex-row gap-10 p-4 md:p-12">
         {user && (
-          <div className="w-[296px]">
-            <Image
-              src={user?.avatar_url}
-              alt={user.login}
-              className="rounded-full"
-              width={296}
-              height={296}
-            />
-            <h1 className="text-2xl mt-3">{user.name}</h1>
-            <p className="text-gray-400 mb-3">{user.login}</p>
+          <div className="md:w-[296px]">
+            <div className="flex md:block gap-5 items-center">
+              <Image
+                src={user?.avatar_url}
+                alt={user.login}
+                className="rounded-full w-14 h-14 md:w-[296px] md:h-[296px]"
+                width={100}
+                height={100}
+              />
+              <div>
+                <h1 className="text-2xl mt-3">{user.name}</h1>
+                <p className="text-gray-400 mb-3">{user.login}</p>
+              </div>
+            </div>
+
             <button className="rounded-md w-full bg-gray-800 p-2 text-xs">
               Follow
             </button>
@@ -63,7 +68,7 @@ export default function TemplateUser({ username }: Props) {
                 <span className="text-gray-400">following</span>
               </p>
             </div>
-            <div className="mt-10 flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
               <p className="flex text-sm">
                 <Image src={ICONS.build} alt="" />
                 <span>&nbsp;{user.company}</span>
@@ -83,7 +88,7 @@ export default function TemplateUser({ username }: Props) {
             </div>
           </div>
         )}
-        <div className="flex-1 ml-12">
+        <div className="flex-1 mt-10 w-full">
           <MDEditor.Markdown
             className="p-3 border border-gray-50 rounded"
             source={readme}
